@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# WORK IN PROGRESS!! //Nicklas Rudolfsson
+# WORK IN PROGRESS!!! //Nicklas Rudolfsson
 
 # Function to print in color
 print_color() {
@@ -38,6 +38,17 @@ sudo xbps-install -S pipewire libspa-bluetooth
 print_color "1;34" "Enabling PipeWire services..."
 sudo ln -s /etc/sv/pipewire /var/service/
 sudo ln -s /etc/sv/pipewire-pulse /var/service/
+
+# Check and create necessary groups
+print_color "1;34" "Checking and creating necessary groups..."
+if ! getent group pulse > /dev/null; then
+    sudo groupadd pulse
+    print_color "1;32" "Created 'pulse' group."
+fi
+if ! getent group pulse-access > /dev/null; then
+    sudo groupadd pulse-access
+    print_color "1;32" "Created 'pulse-access' group."
+fi
 
 # Add user to necessary groups
 print_color "1;34" "Adding user to PipeWire and Pulse groups..."
