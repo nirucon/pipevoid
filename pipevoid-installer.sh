@@ -10,7 +10,7 @@
 # uncomment the line with: autospawn = yes (change yes to no)
 # insert lines in ~/.xinitrc or ~/.dwmo/autoshart.sh
 # pipewire &
-# pipewire pulse &
+# pipewire-pulse &
 # wireplumber
 # reboot the system and check pactl info
 
