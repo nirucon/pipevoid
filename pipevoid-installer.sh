@@ -11,7 +11,7 @@
 # insert lines in ~/.xinitrc or ~/.dwmo/autoshart.sh
 # pipewire &
 # pipewire-pulse &
-# wireplumber
+# wireplumber &
 # reboot the system and check pactl info
 
 # Function to print in color
