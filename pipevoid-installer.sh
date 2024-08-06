@@ -20,6 +20,30 @@ prompt_reboot() {
     esac
 }
 
+# Function to set up PipeWire cleanup service with runit
+setup_pipewire_cleanup_service() {
+    echo "Setting up PipeWire cleanup service..."
+
+    # Create the cleanup script
+    sudo mkdir -p /etc/sv/pipewire-cleanup
+    echo '#!/bin/sh
+rm -f /run/user/1000/pipewire-0.lock
+' | sudo tee /etc/sv/pipewire-cleanup/run > /dev/null
+    sudo chmod +x /etc/sv/pipewire-cleanup/run
+
+    # Create the log directory and script (optional but recommended)
+    sudo mkdir -p /etc/sv/pipewire-cleanup/log
+    echo '#!/bin/sh
+exec svlogd -tt /var/log/pipewire-cleanup
+' | sudo tee /etc/sv/pipewire-cleanup/log/run > /dev/null
+    sudo chmod +x /etc/sv/pipewire-cleanup/log/run
+
+    # Enable the service
+    sudo ln -s /etc/sv/pipewire-cleanup /var/service/
+
+    echo "PipeWire cleanup service set up successfully."
+}
+
 # Check if figlet is installed
 if command -v figlet &> /dev/null; then
     figlet pipevoid
@@ -55,6 +79,9 @@ echo "Appending dbus launch command at the end of .xinitrc..."
 grep -qxF '# Void dbus' ~/.xinitrc || echo -e "\n# Void dbus\nexec dbus-launch --sh-syntax --exit-with-session dwm" >> ~/.xinitrc
 
 echo "Installation and configuration completed."
+
+# Set up PipeWire cleanup service
+setup_pipewire_cleanup_service
 
 # Prompt the user to reboot
 prompt_reboot
