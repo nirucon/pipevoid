@@ -27,7 +27,7 @@ setup_pipewire_cleanup_service() {
     # Create the cleanup script
     sudo mkdir -p /etc/sv/pipewire-cleanup
     echo '#!/bin/sh
-rm -f /run/user/1000/pipewire-0.lock
+rm -f /run/user/1000/*.lock
 ' | sudo tee /etc/sv/pipewire-cleanup/run > /dev/null
     sudo chmod +x /etc/sv/pipewire-cleanup/run
 
