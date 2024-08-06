@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # WORK IN PROGRESS!!! //Nicklas Rudolfsson
-# sudo xbps-install pipewire pipewire-devel alsa-pipewire wireplumber pulseaudio pamixer pa-applet pulseaudio-utils
+# sudo xbps-install pipewire pipewire-devel libpipewire alsa-pipewire wireplumber pulseaudio pamixer pa-applet pulseaudio-utils
 # sudo mkdir /etc/alsa/conf.d
 # sudo ln -s /usr/share/alsa/alsa.conf.d/50-pipewire.conf /etc/alsa/conf.d
 # sudo ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d
