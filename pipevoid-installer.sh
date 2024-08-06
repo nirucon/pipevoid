@@ -7,10 +7,10 @@
 # sudo ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d
 # cd /etc/pulse
 # sudo -e client.conf
-# uncomment the line with: autospawn = no (if yes, change to no and save the file)
+# uncomment the line with: autospawn = yes (change yes to no)
 # insert lines in ~/.xinitrc or ~/.dwmo/autoshart.sh
 # pipewire &
-# pipewire pluse &
+# pipewire pulse &
 # wireplumber
 # reboot the system and check pactl info
 
