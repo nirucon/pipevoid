@@ -50,16 +50,10 @@ fi
 echo "Inserting PipeWire start commands into .xinitrc..."
 grep -qxF '# PipeWire start' ~/.xinitrc || echo -e "\n# PipeWire start\npipewire &\npipewire-pulse &\nwireplumber &" >> ~/.xinitrc
 
-echo "Appending dbus launch command at the end of .xinitrc..."
-grep -qxF '# Void dbus' ~/.xinitrc || echo -e "\n# Void dbus\nexec dbus-launch --sh-syntax --exit-with-session dwm" >> ~/.xinitrc
-
-# Ensure dbus section is at the end
-if ! grep -q 'exec dbus-launch' ~/.xinitrc; then
-    echo -e "\n# Void dbus\nexec dbus-launch --sh-syntax --exit-with-session dwm" >> ~/.xinitrc
-else
-    sed -i '/exec dbus-launch --sh-syntax --exit-with-session dwm/!b;n;d' ~/.xinitrc
-    echo -e "\n# Void dbus\nexec dbus-launch --sh-syntax --exit-with-session dwm" >> ~/.xinitrc
-fi
+echo "Ensuring dbus launch command is at the end of .xinitrc..."
+sed -i '/# Void dbus/d' ~/.xinitrc
+sed -i '/exec dbus-launch --sh-syntax --exit-with-session dwm/d' ~/.xinitrc
+echo -e "\n# Void dbus\nexec dbus-launch --sh-syntax --exit-with-session dwm" >> ~/.xinitrc
 
 echo "Installation and configuration completed."
 
