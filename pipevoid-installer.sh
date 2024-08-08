@@ -10,7 +10,7 @@ print_message() {
 # Update the system and install necessary packages
 print_message "Updating the system and installing necessary packages"
 sudo xbps-install -Syu
-sudo xbps-install -Sy pipewire alsa-utils alsa-plugins alsa-firmware pipewire-pulse wireplumber pavucontrol volumeicon
+sudo xbps-install -Sy pipewire alsa-utils alsa-plugins alsa-firmware pipewire-alsa pipewire-pulse wireplumber pavucontrol volumeicon
 
 # Enable pipewire services
 print_message "Enabling Pipewire and WirePlumber services"
